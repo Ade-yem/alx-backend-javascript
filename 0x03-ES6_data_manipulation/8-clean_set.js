@@ -2,8 +2,8 @@ export default function cleanSet(set, startString) {
   if (startString === undefined || startString.length === 0) {
     return '';
   }
-  const filteredValues = Array.from(set)
-    .filter((value) => value.startsWith(startString))
-    .map((value) => value.slice(startString.length));
-  return filteredValues.join('-');
-}
+  return [...set]
+    .filter((parametro) => (parametro !== undefined ? parametro.startsWith(startString) : ''))
+    .map((parametro) => (parametro !== undefined ? parametro.slice(startString.length) : ''))
+    .join('-');
+};
