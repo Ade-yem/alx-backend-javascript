@@ -2,4 +2,4 @@
 // Display message
 
 const displayMessage = (mess) => console.log(mess);
-module.exports = displayMessage ;
+module.exports = displayMessage;
