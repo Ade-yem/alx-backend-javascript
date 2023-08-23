@@ -13,7 +13,7 @@ const app = http.createServer((req, res) => {
   if (url === '/students') {
     res.write('This is the list of our students\n');
     countStudents(process.argv[2].toString())
-      .then((result) => res.end(result))
+      .then((result) => res.end(result.slice(0, -1)))
       .catch((error) => {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end(error);
