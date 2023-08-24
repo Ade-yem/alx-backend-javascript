@@ -1,7 +1,7 @@
 #!/usr/bin/node
-// Create a more complex HTTP server using Node's HTTP module
+// Create a small HTTP server using Express
 
-const http = require('http');
+const express = require('express');
 const fs = require('fs');
 
 const countStudents = (path) => new Promise((resolve, reject) => {
@@ -31,22 +31,21 @@ const countStudents = (path) => new Promise((resolve, reject) => {
   });
 });
 
-const app = http.createServer((req, res) => {
-  const { url } = req;
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  if (url === '/') {
-    res.end('Hello Holberton School!');
-  }
-  if (url === '/students') {
-    res.write('This is the list of our students\n');
-    countStudents(process.argv[2].toString())
-      .then((result) => res.end(result.trim()))
-      .catch(() => {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Cannot load the database');
-      });
-  }
+const port = 1245;
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello Holberton School!');
 });
 
-app.listen(1245, () => {});
+app.get('/students', (req, res) => {
+  countStudents(process.argv[2].toString())
+    .then((result) => res.send(
+      `This is the list of our students\n${result.trim()}`,
+    ))
+    .catch(() => {
+      res.send('Cannot load the database');
+    });
+});
+
+app.listen(port, () => {});
 module.exports = app;
