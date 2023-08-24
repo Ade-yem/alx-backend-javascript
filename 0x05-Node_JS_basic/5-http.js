@@ -42,7 +42,7 @@ const app = http.createServer((req, res) => {
     countStudents(process.argv[2].toString())
       .then((result) => res.end(result.trim()))
       .catch(() => {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Cannot load the database');
       });
   }
