@@ -1,4 +1,4 @@
-function calculateNumber(a, b, type) {
+function calculateNumber(type, a, b) {
     const types = ['SUM', 'SUBTRACT', 'DIVIDE'];
     if (types.includes(type)) {
       if (type === 'SUM') {
