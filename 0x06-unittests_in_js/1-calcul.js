@@ -3,9 +3,9 @@ function calculateNumber(a, b, type) {
   if (types.includes(type)) {
     if (type === 'SUM') {
       return Math.round(a) + Math.round(b);
-    } if (type === 'SUBTRACT') {
+    } else if (type === 'SUBTRACT') {
       return Math.round(a) - Math.round(b);
-    } if (type === 'DIVIDE') {
+    } else if (type === 'DIVIDE') {
       if (Math.round(b) === 0) {
         return 'Error';
       }

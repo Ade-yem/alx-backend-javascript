@@ -1,17 +1,13 @@
 const sinon = require('sinon')
 const sendPaymentRequestToApi = require('./3-payment')
 const Utils = require('./utils')
-const { expect } = require('chai')
+const assert = require('assert')
 
 describe('sendPaymentRequestToApi', () => {
-  const sandbox = sinon.createSandbox();
-  beforeEach(function() {
-    sandbox.spy(console, 'log');
-  });
-  afterEach(function() {
-    sandbox.restore();
-  });
   it('validate the usage of the Utils function', function() {
-    expect(sendPaymentRequestToApi(100, 20, 'SUM')).to.equal(Utils.calculateNumber('SUM', 100, 20));
+    const spyConsole = sinon.spy(Utils, 'calculateNumber');
+    sendPaymentRequestToApi(100, 20);
+    assert(spyConsole.calledOnce);
+    spyConsole.restore();
   })
 })
