@@ -79,7 +79,7 @@ describe('checks the  login endpoint', () => {
   it('checks correct output', (done) => {
     request.post({
       url: 'http://localhost:7865/login',
-      form: {
+      json: {
         userName: 'Betty'
       }
     }, (err, res, body) => {
